@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Christmas Tree</title>
+    <style>
+        /* 🌌 Nền và căn giữa cây thông */
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #0d1b2a;
+            overflow: hidden;
+        }
+
+        /* 🎄 Cấu trúc cây thông */
+        .tree {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        /* ⭐ Ngôi sao trên đỉnh */
+        .star {
+            position: absolute;
+            top: -50px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #FFD700;
+            font-size: 50px;
+            z-index: 10;
+        }
+
+        /* 🌲 Các tầng lá cây thông */
+        .triangle {
+            width: 0;
+            height: 0;
+            margin-top: -25px;
+            border-style: solid;
+            position: relative;
+        }
+
+        .triangle:nth-child(2) {
+            border-width: 0 60px 80px 60px;
+            border-color: transparent transparent #27ae60 transparent;
+        }
+
+        .triangle:nth-child(3) {
+            border-width: 0 90px 100px 90px;
+            border-color: transparent transparent #1e8449 transparent;
+        }
+
+        .triangle:nth-child(4) {
+            border-width: 0 120px 120px 120px;
+            border-color: transparent transparent #145a32 transparent;
+        }
+
+        .triangle:nth-child(5) {
+            border-width: 0 160px 140px 160px;
+            border-color: transparent transparent #0b3d1f transparent;
+        }
+
+
+        /* 🌳 Thân cây */
+        .trunk {
+            width: 80px;
+            height: 100px;
+            background-color: #8d5524;
+            margin-top: -10px;
+        }
+
+        /* 🎁 Chữ Merry Christmas */
+        .text {
+            margin-top: 30px;
+            font-size: 32px;
+            font-weight: bold;
+            color: #FFD700;
+            text-shadow: 2px 2px 5px #000;
+            animation: glow 2s infinite alternate;
+        }
+
+        @keyframes glow {
+            from {
+                text-shadow: 2px 2px 10px #FFD700;
+            }
+            to {
+                text-shadow: 2px 2px 20px #FFF700;
+            }
+        }
+
+        /* ❄️ Hiệu ứng tuyết rơi */
+        .snowflake {
+            position: absolute;
+            color: white;
+            font-size: 1em;
+            animation: fall linear infinite;
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(-100vh);
+                opacity: 0;
+            }
+            100% {
+                transform: translateY(100vh);
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="tree">
+        <!-- Ngôi sao trên đỉnh cây -->
+        <div class="star">⭐</div>
+        <!-- Các tầng lá cây -->
+        <div class="triangle"></div>
+        <div class="triangle"></div>
+        <div class="triangle"></div>
+        <div class="triangle"></div>
+        <!-- Thân cây -->
+        <div class="trunk"></div>
+    </div>
+
+    <!-- 🎁 Dòng chữ Merry Christmas -->
+    <div class="text">🎄 Merry Christmas 🎅</div>
+
+    <script>
+        // ❄️ Tạo hiệu ứng tuyết rơi
+        function createSnowflakes() {
+            const snowflake = document.createElement('div');
+            snowflake.innerHTML = '❄';
+            snowflake.classList.add('snowflake');
+            snowflake.style.left = Math.random() * 100 + 'vw';
+            snowflake.style.animationDuration = Math.random() * 3 + 2 + 's';
+            snowflake.style.fontSize = Math.random() * 1.5 + 0.5 + 'em';
+            document.body.appendChild(snowflake);
+
+            setTimeout(() => {
+                snowflake.remove();
+            }, 5000);
+        }
+
+        setInterval(createSnowflakes, 200);
+    </script>
+</body>
+</html>
